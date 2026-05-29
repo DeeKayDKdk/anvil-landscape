@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mulch Bed + Flower Planting | Anvil Landscape Co.</title>
+<meta name="description" content="Custom mulch beds with Colorado-native flowers. Three tiers from $450. Steel edging, drip irrigation, repeat-friendly seasonal refresh."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/icon.png">
+<style>
+:root{
+  --forest:#1A3C28;--pine:#2D6A4F;--sage:#4E9A6E;--sage-soft:#9ECFB0;
+  --mint:#D6EDE0;--cream:#F5F1E8;--warm:#EDE8DF;
+  --stone:#4A4035;--gold:#B8832A;--gold-lt:#FDF3E3;
+  --dark:#111810;--muted:#6B6F69;--rule:#C5D8C9;--white:#fff;--ink:#1c2620;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+img{max-width:100%;display:block}
+.ph{position:relative;background:linear-gradient(135deg,var(--mint) 0%,var(--warm) 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px dashed rgba(46,106,79,.35)}
+.ph::after{content:attr(data-label);position:absolute;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pine);font-weight:600;text-align:center;padding:10px 16px;line-height:1.6;max-width:90%}
+.nav{position:sticky;top:0;z-index:100;background:rgba(26,60,40,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(158,207,176,.15)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-chip{background:var(--cream);padding:7px 12px;border-radius:7px;display:flex;align-items:center;line-height:0;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.brand-logo{height:40px;width:auto;display:block}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:13px;color:var(--mint);font-weight:400;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--gold);color:var(--forest)!important;padding:9px 18px;font-weight:600;font-size:12.5px;letter-spacing:.04em;transition:background .2s}
+.nav-cta:hover{background:#cf9434}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.nav-toggle span{width:24px;height:2px;background:var(--mint);display:block}
+.svc-hero{background:var(--forest);padding:72px 0 80px;position:relative;overflow:hidden}
+.svc-hero::before{content:'';position:absolute;top:-20%;right:-5%;width:500px;height:500px;border-radius:50%;border:1px solid rgba(158,207,176,.07)}
+.breadcrumb{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-soft);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.breadcrumb a{color:var(--sage);transition:color .2s}
+.breadcrumb a:hover{color:var(--mint)}
+.breadcrumb span{opacity:.5}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;color:rgba(158,207,176,.1);line-height:1;margin-bottom:-20px;letter-spacing:-.02em}
+.svc-hero h1{font-size:52px;font-weight:700;color:var(--cream);line-height:1.05;letter-spacing:-.01em;margin-bottom:8px;position:relative;z-index:1}
+.svc-hero h1 em{font-style:italic;color:var(--sage-soft)}
+.svc-subtitle{font-size:15px;color:var(--sage-soft);letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:20px}
+.svc-lead{font-size:17px;color:rgba(245,241,232,.78);font-weight:300;line-height:1.75;max-width:600px;margin-bottom:32px}
+.svc-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--forest);padding:14px 28px;font-weight:600;font-size:14px;letter-spacing:.03em;transition:transform .2s,background .2s;display:inline-block}
+.btn-gold:hover{background:#cf9434;transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(158,207,176,.4);color:var(--mint);padding:14px 26px;font-weight:500;font-size:14px;letter-spacing:.03em;transition:border-color .2s,color .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--sage-soft);color:#fff}
+.svc-photo{width:100%;height:420px}
+.sec-label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:10px}
+.sec-title{font-size:36px;font-weight:700;color:var(--forest);line-height:1.1}
+
+/* TIER TABLE */
+.tier-table{margin-top:36px;border:1px solid var(--rule);width:100%}
+.tier-head{display:grid;grid-template-columns:180px 1fr 1fr 1fr;background:var(--forest)}
+.tier-head-empty{padding:16px}
+.tier-col-head{padding:16px 20px;text-align:center}
+.tier-col-head.popular{background:rgba(184,131,42,.25)}
+.tier-badge{display:block;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.tier-col-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--cream)}
+.tier-row{display:grid;grid-template-columns:180px 1fr 1fr 1fr;border-top:1px solid var(--rule)}
+.tier-row.price-row{background:var(--white)}
+.tier-row.feature-row{background:var(--cream)}
+.tier-row.feature-row:nth-child(even){background:var(--white)}
+.tier-label{padding:14px 16px;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;border-right:1px solid var(--rule);display:flex;align-items:center}
+.tier-cell{padding:14px 20px;text-align:center;font-size:13.5px;color:var(--dark);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--rule)}
+.tier-cell:last-child{border-right:0}
+.tier-cell.popular{background:rgba(26,60,40,.04)}
+.price-big{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--forest)}
+.price-big.gold{color:var(--gold)}
+.price-sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+
+.incl-note{background:var(--mint);border-left:3px solid var(--sage);padding:16px 20px;margin-top:1px;font-size:13px;color:var(--forest);line-height:1.6}
+
+/* REPEAT CALLOUT */
+.repeat-bar{background:var(--gold-lt);border:1px solid rgba(184,131,42,.25);padding:24px 28px;margin-top:32px;display:flex;gap:20px;align-items:flex-start}
+.repeat-icon{font-size:28px;flex-shrink:0}
+.repeat-bar h4{font-size:15px;font-weight:600;color:var(--forest);margin-bottom:6px}
+.repeat-bar p{font-size:13.5px;color:var(--muted);line-height:1.6;max-width:680px}
+
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:36px;border:1px solid var(--rule)}
+.step{padding:28px 24px;border-right:1px solid var(--rule);position:relative}
+.step:last-child{border-right:0}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--rule);line-height:1;margin-bottom:10px}
+.step h4{font-size:14px;font-weight:600;color:var(--forest);margin-bottom:6px}
+.step p{font-size:13px;color:var(--muted);line-height:1.55}
+
+.why{background:var(--forest);padding:72px 0}
+.why h2{font-size:38px;font-weight:700;color:var(--cream);margin-bottom:8px}
+.why-lead{font-size:16px;color:rgba(245,241,232,.7);font-weight:300;margin-bottom:40px;max-width:560px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{background:rgba(255,255,255,.05);border:1px solid rgba(158,207,176,.12);padding:28px 24px}
+.why-card h4{font-size:15px;font-weight:600;color:var(--mint);margin-bottom:8px}
+.why-card p{font-size:13.5px;color:rgba(245,241,232,.65);line-height:1.6}
+
+.svc-cta{background:var(--gold-lt);border-top:2px solid var(--gold);padding:64px 0;text-align:center}
+.svc-cta h2{font-size:40px;font-weight:700;color:var(--forest);margin-bottom:10px}
+.svc-cta p{font-size:16px;color:var(--muted);margin-bottom:28px}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.footer{background:var(--dark);padding:48px 0 32px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-copy{font-size:12px;color:rgba(245,241,232,.35);letter-spacing:.04em}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(245,241,232,.45);letter-spacing:.04em;transition:color .2s}
+.footer-links a:hover{color:var(--mint)}
+
+@media(max-width:768px){
+  .svc-hero h1{font-size:36px}
+  .tier-head,.tier-row{grid-template-columns:100px 1fr 1fr 1fr}
+  .tier-label{font-size:10px;padding:10px}
+  .tier-cell{padding:10px 8px;font-size:12px}
+  .price-big{font-size:22px}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .step{border-right:0;border-bottom:1px solid var(--rule)}
+  .why-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-chip"><img src="/icon.png" alt="Anvil Landscape Co." class="brand-logo"/></div>
+      <span class="visually-hidden">Anvil Landscape Co.</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#plant">Plant</a>
+      <a href="index.html#build">Build</a>
+      <a href="index.html#maintain">Maintain</a>
+      <a href="index.html#contact" class="nav-cta">Free Quote</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="svc-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#plant">Plant</a><span>/</span>Mulch Bed + Flowers</div>
+    <div class="svc-num">01</div>
+    <p class="svc-subtitle">Service 01 — Plant</p>
+    <h1>Mulch Bed +<br/><em>Flower Planting</em></h1>
+    <p class="svc-lead">The easiest way to transform how your home looks from the street. Custom mulch beds with Colorado-native plants — no turf removal, no disruption, done in a day. Works with your existing lawn and builds toward something bigger.</p>
+    <div class="svc-hero-actions">
+      <a href="index.html#contact" class="btn-gold">Get a Free Quote</a>
+      <a href="index.html#plant" class="btn-ghost">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<img src="mulch bed .jpeg" alt="Mulch bed with native flowers and steel edging" class="svc-photo" style="object-fit:cover;border-radius:4px;"/>
+
+<section style="padding:72px 0">
+  <div class="wrap">
+    <p class="sec-label">Pricing</p>
+    <h2 class="sec-title">Three tiers. One crew. Done in a day.</h2>
+
+    <div class="tier-table">
+      <!-- HEADER -->
+      <div class="tier-head">
+        <div class="tier-head-empty"></div>
+        <div class="tier-col-head">
+          <span class="tier-col-name">Starter</span>
+        </div>
+        <div class="tier-col-head popular">
+          <span class="tier-badge">Most Popular</span>
+          <span class="tier-col-name">Standard</span>
+        </div>
+        <div class="tier-col-head">
+          <span class="tier-col-name">Premium</span>
+        </div>
+      </div>
+      <!-- POSITIONING -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Best for</div>
+        <div class="tier-cell">Front door looks intentional for under a grand</div>
+        <div class="tier-cell popular">The whole front bed system, done right</div>
+        <div class="tier-cell">A real design — not just plants in dirt</div>
+      </div>
+      <!-- PRICE -->
+      <div class="tier-row price-row">
+        <div class="tier-label">Price</div>
+        <div class="tier-cell"><div><span class="price-big">$450–$750</span><span class="price-sub">all-in</span></div></div>
+        <div class="tier-cell popular"><div><span class="price-big gold">$1,200–$2,000</span><span class="price-sub">all-in</span></div></div>
+        <div class="tier-cell"><div><span class="price-big">$3,000–$4,500</span><span class="price-sub">all-in</span></div></div>
+      </div>
+      <!-- SIZE -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Coverage</div>
+        <div class="tier-cell">~50 sq ft · 1 bed</div>
+        <div class="tier-cell popular">~150 sq ft · 2–3 beds</div>
+        <div class="tier-cell">~300+ sq ft · 4+ beds</div>
+      </div>
+      <!-- PLANTS -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Plants</div>
+        <div class="tier-cell">4–6 annuals or perennials</div>
+        <div class="tier-cell popular">10–15 plants (mixed annuals + perennials)</div>
+        <div class="tier-cell">20+ plants (layered heights, color palette)</div>
+      </div>
+      <!-- MULCH -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Mulch</div>
+        <div class="tier-cell">2" layer</div>
+        <div class="tier-cell popular">3" layer</div>
+        <div class="tier-cell">Decorative mulch, your choice</div>
+      </div>
+      <!-- EDGING -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Edging</div>
+        <div class="tier-cell">Basic edging</div>
+        <div class="tier-cell popular">Steel edging</div>
+        <div class="tier-cell">Full steel edging</div>
+      </div>
+      <!-- EXTRAS -->
+      <div class="tier-row feature-row">
+        <div class="tier-label">Extras</div>
+        <div class="tier-cell">—</div>
+        <div class="tier-cell popular">Weed barrier included</div>
+        <div class="tier-cell">Weed barrier + drip irrigation</div>
+      </div>
+    </div>
+    <div class="incl-note">✓ All installs include soil amendment, plant selection from our Colorado library, and a Year 1 care guide. Final price confirmed on-site before work begins.</div>
+
+    <div class="repeat-bar">
+      <div class="repeat-icon">🔁</div>
+      <div>
+        <h4>Your highest repeat-purchase service</h4>
+        <p>Annuals need refreshing every season — so a Standard client today is a $1,200+ call-back every spring without you having to resell. It's also the easiest first job for a customer not ready for a full xeriscape. Low risk, high visibility, builds trust for the bigger install later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:72px 0;background:var(--white)">
+  <div class="wrap">
+    <p class="sec-label">How It Works</p>
+    <h2 class="sec-title">From quote to finished beds</h2>
+    <div class="process-steps">
+      <div class="step"><div class="step-num">01</div><h4>Free Quote</h4><p>We visit your property, assess the space, and send a same-day quote.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Plant Selection</h4><p>We pick from our 50-plant Colorado library based on your light, soil, and style.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Install Day</h4><p>Full install in one day — mulch, plants, edging, soil amendment.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Care Guide</h4><p>Custom Year 1 watering and care instructions before we leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <h2>Why start here</h2>
+    <p class="why-lead">Low commitment, immediate results. The fastest way to transform your curb appeal — and the beginning of a longer relationship with your yard.</p>
+    <div class="why-grid">
+      <div class="why-card"><h4>No Turf Removal</h4><p>Works alongside your existing lawn. Zero disruption to your yard or schedule.</p></div>
+      <div class="why-card"><h4>Colorado-Native Plants</h4><p>Drought-tolerant species chosen for Denver's climate — beautiful and low-maintenance.</p></div>
+      <div class="why-card"><h4>Builds Toward More</h4><p>Start with one bed. Come back for a full xeriscape. Most of our best clients started here.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-cta">
+  <div class="wrap">
+    <h2>Ready to get started?</h2>
+    <p>Free same-day quotes. Most installs scheduled within 2 weeks.</p>
+    <div class="cta-actions">
+      <a href="index.html#contact" class="btn-gold">Get Your Free Quote</a>
+      <a href="full-xeriscape.html" class="btn-ghost" style="color:var(--forest);border-color:rgba(26,60,40,.3)">Next: Full Xeriscape →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="footer-copy">© 2025 Anvil Landscape Co. · Denver, CO</span>
+    <div class="footer-links">
+      <a href="index.html#plant">Services</a>
+      <a href="index.html#maintain">Maintenance</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+</body></html>

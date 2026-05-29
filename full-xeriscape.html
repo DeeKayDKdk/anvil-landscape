@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="/icon.png">
+<style>
+:root{
+  --forest:#1A3C28;--pine:#2D6A4F;--sage:#4E9A6E;--sage-soft:#9ECFB0;
+  --mint:#D6EDE0;--cream:#F5F1E8;--warm:#EDE8DF;
+  --stone:#4A4035;--gold:#B8832A;--gold-lt:#FDF3E3;
+  --dark:#111810;--muted:#6B6F69;--rule:#C5D8C9;--white:#fff;--ink:#1c2620;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+img{max-width:100%;display:block}
+
+/* PH system */
+.ph{position:relative;background:linear-gradient(135deg,var(--mint) 0%,var(--warm) 100%);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  border:1px dashed rgba(46,106,79,.35)}
+.ph::after{content:attr(data-label);position:absolute;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pine);font-weight:600;
+  text-align:center;padding:10px 16px;line-height:1.6;max-width:90%}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(26,60,40,.97);
+  backdrop-filter:blur(8px);border-bottom:1px solid rgba(158,207,176,.15)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;
+  padding:16px 32px;max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-chip{background:var(--cream);padding:7px 12px;border-radius:7px;
+  display:flex;align-items:center;line-height:0;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.brand-logo{height:40px;width:auto;display:block}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:13px;color:var(--mint);font-weight:400;letter-spacing:.03em;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--gold);color:var(--forest)!important;padding:9px 18px;
+  font-weight:600;font-size:12.5px;letter-spacing:.04em;transition:background .2s}
+.nav-cta:hover{background:#cf9434}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.nav-toggle span{width:24px;height:2px;background:var(--mint);display:block}
+
+/* SERVICE HERO */
+.svc-hero{background:var(--forest);padding:72px 0 80px;position:relative;overflow:hidden}
+.svc-hero::before{content:'';position:absolute;top:-20%;right:-5%;width:500px;height:500px;
+  border-radius:50%;border:1px solid rgba(158,207,176,.07)}
+.breadcrumb{font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--sage-soft);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.breadcrumb a{color:var(--sage);transition:color .2s}
+.breadcrumb a:hover{color:var(--mint)}
+.breadcrumb span{opacity:.5}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;
+  color:rgba(158,207,176,.1);line-height:1;margin-bottom:-20px;letter-spacing:-.02em}
+.svc-hero h1{font-size:52px;font-weight:700;color:var(--cream);line-height:1.05;
+  letter-spacing:-.01em;margin-bottom:8px;position:relative;z-index:1}
+.svc-hero h1 em{font-style:italic;color:var(--sage-soft)}
+.svc-subtitle{font-size:15px;color:var(--sage-soft);letter-spacing:.06em;
+  text-transform:uppercase;font-weight:500;margin-bottom:20px}
+.svc-lead{font-size:17px;color:rgba(245,241,232,.78);font-weight:300;
+  line-height:1.75;max-width:600px;margin-bottom:32px}
+.svc-price-tag{display:inline-flex;align-items:baseline;gap:6px;
+  background:rgba(184,131,42,.15);border:1px solid rgba(184,131,42,.3);
+  padding:10px 20px;margin-bottom:32px}
+.svc-price-tag .from{font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+.svc-price-tag .amount{font-family:'Cormorant Garamond',serif;font-size:36px;
+  font-weight:700;color:var(--gold)}
+.svc-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--forest);padding:14px 28px;
+  font-weight:600;font-size:14px;letter-spacing:.03em;
+  transition:transform .2s,background .2s;display:inline-block}
+.btn-gold:hover{background:#cf9434;transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(158,207,176,.4);color:var(--mint);
+  padding:14px 26px;font-weight:500;font-size:14px;letter-spacing:.03em;
+  transition:border-color .2s,color .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--sage-soft);color:var(--white)}
+
+/* PHOTO PLACEHOLDER */
+.svc-photo{width:100%;height:420px}
+
+/* INCLUDES */
+.includes{padding:72px 0;background:var(--white)}
+.includes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.inc-item{display:flex;align-items:flex-start;gap:14px;padding:20px 24px;
+  background:var(--cream);border-left:3px solid var(--sage)}
+.inc-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.inc-item h4{font-size:14px;font-weight:600;color:var(--forest);margin-bottom:4px}
+.inc-item p{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* PROCESS */
+.process{padding:72px 0}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  margin-top:36px;border:1px solid var(--rule)}
+.step{padding:28px 24px;border-right:1px solid var(--rule);position:relative}
+.step:last-child{border-right:0}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;
+  color:var(--rule);line-height:1;margin-bottom:10px}
+.step h4{font-size:14px;font-weight:600;color:var(--forest);margin-bottom:6px}
+.step p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* WHY */
+.why{background:var(--forest);padding:72px 0}
+.why h2{font-size:38px;font-weight:700;color:var(--cream);margin-bottom:8px}
+.why-lead{font-size:16px;color:rgba(245,241,232,.7);font-weight:300;margin-bottom:40px;max-width:560px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{background:rgba(255,255,255,.05);border:1px solid rgba(158,207,176,.12);padding:28px 24px}
+.why-card h4{font-size:15px;font-weight:600;color:var(--mint);margin-bottom:8px}
+.why-card p{font-size:13.5px;color:rgba(245,241,232,.65);line-height:1.6}
+
+/* CTA */
+.svc-cta{background:var(--gold-lt);border-top:2px solid var(--gold);padding:64px 0;text-align:center}
+.svc-cta h2{font-size:40px;font-weight:700;color:var(--forest);margin-bottom:10px}
+.svc-cta p{font-size:16px;color:var(--muted);margin-bottom:28px}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;
+  color:var(--muted);letter-spacing:.04em;margin-bottom:24px;
+  transition:color .2s;text-transform:uppercase}
+.back-link:hover{color:var(--forest)}
+
+/* FOOTER */
+.footer{background:var(--dark);padding:48px 0 32px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-copy{font-size:12px;color:rgba(245,241,232,.35);letter-spacing:.04em}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(245,241,232,.45);letter-spacing:.04em;transition:color .2s}
+.footer-links a:hover{color:var(--mint)}
+
+/* SECTION LABEL */
+.sec-label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--sage);font-weight:600;margin-bottom:10px}
+.sec-title{font-size:36px;font-weight:700;color:var(--forest);line-height:1.1}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .svc-hero h1{font-size:36px}
+  .includes-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .step{border-right:0;border-bottom:1px solid var(--rule)}
+  .why-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+}
+</style>
+</head>
+<style>
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:36px;border:1px solid var(--rule)}
+.pkg{padding:32px 28px;border-right:1px solid var(--rule);position:relative}
+.pkg:last-child{border-right:0}
+.pkg-popular{background:var(--forest);border-right:1px solid rgba(158,207,176,.2)}
+.pkg-badge{display:inline-block;background:var(--gold);color:var(--forest);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;margin-bottom:14px}
+.pkg-name{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:700;color:var(--forest);line-height:1;margin-bottom:4px}
+.pkg-popular .pkg-name{color:var(--cream)}
+.pkg-sub{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500;line-height:1.5}
+.pkg-popular .pkg-sub{color:var(--sage-soft)}
+.pkg-price{font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:700;color:var(--forest);line-height:1;margin-bottom:4px}
+.pkg-popular .pkg-price{color:var(--gold)}
+.pkg-price-sub{font-size:12px;color:var(--muted);margin-bottom:20px;font-style:italic}
+.pkg-popular .pkg-price-sub{color:rgba(245,241,232,.6)}
+.pkg-divider{height:1px;background:var(--rule);margin:20px 0}
+.pkg-popular .pkg-divider{background:rgba(158,207,176,.2)}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:9px}
+.pkg-features li{font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.45}
+.pkg-popular .pkg-features li{color:rgba(245,241,232,.72)}
+.pkg-features li::before{content:"✓";color:var(--sage);font-weight:700;flex-shrink:0;margin-top:1px}
+.pkg-popular .pkg-features li::before{color:var(--sage-soft)}
+.incl-note{background:var(--mint);border-left:3px solid var(--sage);padding:16px 20px;margin-top:20px;font-size:13px;color:var(--forest);line-height:1.6}
+@media(max-width:768px){
+  .pkg-grid{grid-template-columns:1fr}
+  .pkg{border-right:0;border-bottom:1px solid var(--rule)}
+  .pkg-popular{border-right:0}
+}
+</style>
+<title>Full Xeriscape Transformation | Anvil Landscape Co.</title>
+<meta name="description" content="Complete turf removal and xeriscape redesign. Three tiers from $3,500. Drip irrigation, custom plant layout, qualifies for water rebates."/>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-chip"><img src="/icon.png" alt="Anvil Landscape Co." class="brand-logo"/></div>
+      <span class="visually-hidden">Anvil Landscape Co.</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#plant">Plant</a>
+      <a href="index.html#build">Build</a>
+      <a href="index.html#maintain">Maintain</a>
+      <a href="index.html#contact" class="nav-cta">Free Quote</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<section class="svc-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#plant">Plant</a><span>/</span>Full Xeriscape</div>
+    <div class="svc-num">02</div>
+    <p class="svc-subtitle">Service 02 — Plant</p>
+    <h1>Full Xeriscape<br/><em>Transformation</em></h1>
+    <p class="svc-lead">We remove existing turf and replace it with a fully designed water-smart landscape. Drought-tolerant plants, drip irrigation, rock or DG ground cover. Built for Denver's climate — and designed to qualify for water rebate programs.</p>
+    <div class="svc-hero-actions">
+      <a href="index.html#contact" class="btn-gold">Get a Free Quote</a>
+      <a href="index.html#plant" class="btn-ghost">View All Services</a>
+    </div>
+  </div>
+</section>
+<img src="Full Xeriscape.jpeg" alt="Full xeriscape transformation" class="svc-photo" style="object-fit:cover;border-radius:4px;"/>
+
+<section style="background:var(--forest);padding:28px 0">
+  <div class="wrap">
+    <p style="font-size:13px;color:var(--sage-soft);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">💧 Water Rebate Programs</p>
+    <p style="font-size:14px;color:rgba(245,241,232,.75);max-width:700px;line-height:1.7">Aurora GRIP: up to $4,000 · Castle Rock: $3.25/sq ft · Fort Collins: up to $1,000. Every install is designed to qualify — ask us about your municipality's current program.</p>
+  </div>
+</section>
+
+<section style="padding:72px 0">
+  <div class="wrap">
+    <p class="sec-label">Packages</p>
+    <h2 class="sec-title">Three tiers. One crew. Zero turf.</h2>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <p class="pkg-name">Starter</p>
+        <p class="pkg-sub">~500 sq ft · 5–8 plants<br/>DG/rock ground cover · basic drip</p>
+        <p class="pkg-price">$3,500–$5,500</p>
+        <p class="pkg-price-sub">All-in, installed</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Turf removal &amp; disposal</li>
+          <li>5–8 Colorado-native plants</li>
+          <li>DG or river rock ground cover</li>
+          <li>Basic drip irrigation</li>
+          <li>Steel edging + soil amendment</li>
+        </ul>
+      </div>
+      <div class="pkg pkg-popular">
+        <span class="pkg-badge">Most Popular</span>
+        <p class="pkg-name">Standard</p>
+        <p class="pkg-sub">~1,000 sq ft · 12–15 plants<br/>Mixed materials · full drip zones</p>
+        <p class="pkg-price">$7,000–$10,000</p>
+        <p class="pkg-price-sub">All-in, installed</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Everything in Starter, plus:</li>
+          <li>12–15 Colorado-native plants</li>
+          <li>Mixed DG + rock materials</li>
+          <li>Full drip irrigation with zones</li>
+          <li>Custom design plan</li>
+          <li>Rebate documentation included</li>
+        </ul>
+      </div>
+      <div class="pkg">
+        <p class="pkg-name">Premium</p>
+        <p class="pkg-sub">~1,500+ sq ft · 20+ plants<br/>Boulders + custom layout · smart irrigation</p>
+        <p class="pkg-price">$12,000–$18,000</p>
+        <p class="pkg-price-sub">All-in, installed</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li>Everything in Standard, plus:</li>
+          <li>20+ plants, full design layout</li>
+          <li>Feature boulders + accent rock</li>
+          <li>Smart irrigation controller</li>
+          <li>Whole-property custom design</li>
+          <li>Priority scheduling</li>
+        </ul>
+      </div>
+    </div>
+    <div class="incl-note">✓ All packages include turf removal &amp; disposal, steel edging, soil amendment, and a Year 1 care guide. Final price confirmed on-site before work begins. Custom sizes available on request.</div>
+  </div>
+</section>
+
+<section class="process" style="background:var(--white)">
+  <div class="wrap">
+    <p class="sec-label">How It Works</p>
+    <h2 class="sec-title">Your transformation, step by step</h2>
+    <div class="process-steps">
+      <div class="step"><div class="step-num">01</div><h4>Site Visit + Quote</h4><p>We measure, assess soil and sun, and deliver a same-day quote.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Design Review</h4><p>You approve the plant layout, material choices, and irrigation plan.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Install (2–5 Days)</h4><p>Turf removal, irrigation, plants, rock, edging — all done by our crew.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Rebate Paperwork</h4><p>We provide documentation to help you claim your water rebate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <h2>60–70% less water. Zero compromise on beauty.</h2>
+    <p class="why-lead">Denver's climate rewards xeriscape. Lower bills, less maintenance, and a yard that looks better in August than any turf lawn ever could.</p>
+    <div class="why-grid">
+      <div class="why-card"><h4>Rebate Eligible</h4><p>Every install is designed to qualify for local water rebate programs — we handle the documentation.</p></div>
+      <div class="why-card"><h4>Turf-Free Maintenance</h4><p>No mowing. No aerating. No overseeding. A xeriscape yard practically takes care of itself.</p></div>
+      <div class="why-card"><h4>Built for Denver</h4><p>Every plant and material chosen specifically for Colorado's freeze-thaw cycles and dry summers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-cta">
+  <div class="wrap">
+    <h2>Ready to go turf-free?</h2>
+    <p>Free same-day quotes. Ask about current rebate programs in your municipality.</p>
+    <div class="cta-actions">
+      <a href="index.html#contact" class="btn-gold">Get Your Free Quote</a>
+      <a href="fire-pit.html" class="btn-ghost" style="color:var(--forest);border-color:rgba(26,60,40,.3)">Next: Fire Pit →</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="footer-copy">© 2025 Anvil Landscape Co. · Denver, CO</span>
+    <div class="footer-links">
+      <a href="index.html#plant">Services</a>
+      <a href="index.html#maintain">Maintenance</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+</body></html>
