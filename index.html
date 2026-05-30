@@ -787,14 +787,22 @@
     a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'));
   });
 
-  /* quote form — placeholder handler.
-     Replace with a real form service (Formspree, Squarespace form,
-     or email endpoint) before launch. */
   function handleQuote(e){
     e.preventDefault();
-    alert("Thank you. This is a placeholder form — connect it to a real "+
-      "form service (Formspree / Squarespace) before launch so quote "+
-      "requests reach your inbox.");
+    var form = e.target;
+    fetch('https://formspree.io/f/xpqnewwk',{
+      method:'POST',
+      body:new FormData(form),
+      headers:{'Accept':'application/json'}
+    }).then(function(r){
+      if(r.ok){
+        form.innerHTML='<p style="text-align:center;font-size:18px;padding:40px 0;color:#2d5a3d;font-weight:600;">Thank you — we\'ll be in touch within 24 hours.</p>';
+      } else {
+        alert('Something went wrong. Please email hello@anvillandscape.com');
+      }
+    }).catch(function(){
+      alert('Something went wrong. Please email hello@anvillandscape.com');
+    });
     return false;
   }
 </script>
