@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant Library — Anvil Landscape Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAF7F2;--white:#FFFDF9;--ink:#2A2218;--stone:#4A4035;--stone-lt:#7A6E63;
+  --rule:#DDD5C8;--earth:#8B6914;--earth-lt:#F5EDD8;--accent:#3D2B1A;
+  --sage:#4A7A55;--sage-lt:#EEF4EF;
+  --c-grass:#4A7A55;--c-perenial:#7A4A6A;--c-shrub:#7A5A2A;
+  --c-tree:#2A4A3A;--c-ground:#4A5A7A;
+}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+
+/* HEADER */
+.header{background:var(--accent);color:white;padding:28px 20px 24px;text-align:center}
+.hdr-brand{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin-bottom:6px}
+.hdr-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;line-height:1;letter-spacing:-.5px;margin-bottom:6px}
+.hdr-sub{font-size:12px;font-weight:300;opacity:.65;letter-spacing:.06em;line-height:1.5}
+.hdr-count{display:inline-block;margin-top:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+
+/* CONTROLS */
+.controls{padding:16px 16px 8px;position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--rule)}
+.search-wrap{position:relative;margin-bottom:12px}
+.search-wrap input{width:100%;padding:11px 16px 11px 40px;border:1.5px solid var(--rule);border-radius:8px;font-family:'Jost',sans-serif;font-size:14px;color:var(--ink);background:var(--white);-webkit-appearance:none;outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.45}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-btn{flex-shrink:0;padding:7px 14px;border:1.5px solid var(--rule);border-radius:20px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;color:var(--stone-lt);background:var(--white);cursor:pointer;white-space:nowrap;transition:all .15s;-webkit-appearance:none}
+.filter-btn.active{border-color:var(--accent);background:var(--accent);color:white}
+.filter-btn[data-cat="grass"].active{background:var(--c-grass);border-color:var(--c-grass)}
+.filter-btn[data-cat="perennial"].active{background:var(--c-perenial);border-color:var(--c-perenial)}
+.filter-btn[data-cat="shrub"].active{background:var(--c-shrub);border-color:var(--c-shrub)}
+.filter-btn[data-cat="tree"].active{background:var(--c-tree);border-color:var(--c-tree)}
+.filter-btn[data-cat="ground"].active{background:var(--c-ground);border-color:var(--c-ground)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 14px 40px}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr 1fr}}
+@media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+
+/* CARD */
+.card{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid var(--rule);transition:transform .15s}
+.card:active{transform:scale(.98)}
+.card-photo{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--earth-lt);display:block}
+.card-photo-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--earth-lt) 0%,var(--rule) 100%);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--stone-lt)}
+.card-body{padding:11px 12px 13px}
+.card-cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-bottom:6px;color:white}
+.card-cat[data-cat="grass"]{background:var(--c-grass)}
+.card-cat[data-cat="perennial"]{background:var(--c-perenial)}
+.card-cat[data-cat="shrub"]{background:var(--c-shrub)}
+.card-cat[data-cat="tree"]{background:var(--c-tree)}
+.card-cat[data-cat="ground"]{background:var(--c-ground)}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:2px}
+.card-latin{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--stone-lt);margin-bottom:9px;line-height:1.3}
+.card-facts{display:flex;flex-direction:column;gap:4px}
+.fact{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--stone-lt)}
+.fact-icon{font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.fact-val{line-height:1.3}
+.card-note{margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);font-size:10.5px;color:var(--stone-lt);line-height:1.4;font-style:italic}
+.card-flag{display:inline-block;margin-top:6px;background:rgba(139,105,20,.12);color:var(--earth);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
+
+/* WATER DROPS */
+.water-drops{display:flex;gap:2px}
+.drop{width:8px;height:8px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1px solid var(--stone-lt)}
+.drop.filled{background:var(--accent);border-color:var(--accent)}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:60px 20px;color:var(--stone-lt)}
+.empty-icon{font-size:40px;margin-bottom:12px}
+.empty-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--stone);margin-bottom:6px}
+.empty-text{font-size:13px}
+
+/* FOOTER */
+.page-footer{text-align:center;padding:24px 20px;border-top:1px solid var(--rule);font-size:11px;color:var(--stone-lt)}
+
+/* PRINT */
+@media print{
+  .controls{position:static}
+  .grid{grid-template-columns:1fr 1fr 1fr;gap:8px;padding:10px}
+  .card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hdr-brand">Anvil Landscape Co.</div>
+  <div class="hdr-title">Plant Library</div>
+  <div class="hdr-sub">50 Colorado-certified plants · Chosen for Denver's climate, soil, and altitude</div>
+  <div class="hdr-count">50 Plants · 5 Categories</div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search by name..." oninput="filterPlants()">
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All 50</button>
+    <button class="filter-btn" data-cat="grass" onclick="setFilter('grass',this)">🌾 Grasses</button>
+    <button class="filter-btn" data-cat="perennial" onclick="setFilter('perennial',this)">🌸 Perennials</button>
+    <button class="filter-btn" data-cat="shrub" onclick="setFilter('shrub',this)">🌿 Shrubs</button>
+    <button class="filter-btn" data-cat="tree" onclick="setFilter('tree',this)">🌲 Trees</button>
+    <button class="filter-btn" data-cat="ground" onclick="setFilter('ground',this)">🪨 Groundcovers</button>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="page-footer">
+  Anvil Landscape Co. · Denver, CO · anvillandscape.com · 720-772-1844<br>
+  All plants selected for Zone 5b, Denver's clay soil, and high-altitude UV exposure
+</div>
+
+<script>
+const PLANTS = [
+  // ORNAMENTAL GRASSES
+  {id:1,name:"Blue Avena Grass",latin:"Helictotrichon sempervirens",cat:"grass",zone:"4–8",water:"very-low",sun:"Full sun",height:"2–3 ft",notes:"Cool blue mounding — structure and year-round interest",wiki:"Helictotrichon_sempervirens"},
+  {id:2,name:"Karl Foerster Reed Grass",latin:"Calamagrostis x acutiflora",cat:"grass",zone:"4–9",water:"low",sun:"Full sun–part shade",height:"4–5 ft",notes:"Upright, extremely tough, reliable. Classic anchor grass.",wiki:"Calamagrostis_×_acutiflora"},
+  {id:3,name:"Blue Grama Grass",latin:"Bouteloua gracilis",cat:"grass",zone:"3–10",water:"very-low",sun:"Full sun",height:"12–18 in",notes:"Colorado native. Lawn alternative for xeriscape.",wiki:"Bouteloua_gracilis"},
+  {id:4,name:"Buffalo Grass",latin:"Bouteloua dactyloides",cat:"grass",zone:"4–9",water:"very-low",sun:"Full sun",height:"4–8 in",notes:"True lawn alternative. Drought-tolerant turf.",wiki:"Bouteloua_dactyloides"},
+  {id:5,name:"Little Bluestem",latin:"Schizachyrium scoparium",cat:"grass",zone:"3–9",water:"low",sun:"Full sun",height:"2–3 ft",notes:"Native, blue-silver in summer, stunning red fall color.",wiki:"Schizachyrium_scoparium"},
+  {id:6,name:"Switchgrass Heavy Metal",latin:"Panicum virgatum",cat:"grass",zone:"4–9",water:"low",sun:"Full sun",height:"4–5 ft",notes:"Upright steel-blue blades. Great vertical accent.",wiki:"Panicum_virgatum"},
+  {id:7,name:"Mexican Feather Grass",latin:"Nassella tenuissima",cat:"grass",zone:"6–10",water:"low",sun:"Full sun",height:"1–2 ft",notes:"Delicate, silky plumes. Zone 6 borderline — may rebound from crown.",wiki:"Nassella_tenuissima",flag:"Zone 6 borderline"},
+  {id:8,name:"Prairie Dropseed",latin:"Sporobolus heterolepis",cat:"grass",zone:"3–9",water:"low",sun:"Full sun",height:"2 ft",notes:"Fine texture, arching form. Fragrant fall seed heads.",wiki:"Sporobolus_heterolepis"},
+
+  // PERENNIALS
+  {id:9,name:"Walker's Low Catmint",latin:"Nepeta x faassenii",cat:"perennial",zone:"4–8",water:"low",sun:"Full sun",height:"2 ft × 3 ft",notes:"Long bloom, pollinator-friendly. Best xeriscape perennial.",wiki:"Nepeta_×_faassenii"},
+  {id:10,name:"Russian Sage",latin:"Perovskia atriplicifolia",cat:"perennial",zone:"4–9",water:"very-low",sun:"Full sun",height:"3–4 ft",notes:"Lavender bloom, drought-proof once established.",wiki:"Salvia_yangii",flag:"Spring plant only"},
+  {id:11,name:"Yarrow",latin:"Achillea millefolium",cat:"perennial",zone:"3–9",water:"low",sun:"Full sun",height:"1–2 ft",notes:"Tough, long bloom, native. Yellow, white, or pink forms.",wiki:"Achillea_millefolium"},
+  {id:12,name:"Blanket Flower",latin:"Gaillardia aristata",cat:"perennial",zone:"3–10",water:"low",sun:"Full sun",height:"1–2 ft",notes:"Red-yellow native prairie flower. Very tough.",wiki:"Gaillardia_aristata"},
+  {id:13,name:"Echinacea / Coneflower",latin:"Echinacea purpurea",cat:"perennial",zone:"3–9",water:"low",sun:"Full sun–part shade",height:"2–3 ft",notes:"Pink/purple, long-lived, pollinators love it.",wiki:"Echinacea_purpurea"},
+  {id:14,name:"Black-Eyed Susan",latin:"Rudbeckia fulgida",cat:"perennial",zone:"3–9",water:"low",sun:"Full sun–part shade",height:"2 ft",notes:"Golden yellow, late summer color. Very reliable.",wiki:"Rudbeckia_fulgida"},
+  {id:15,name:"Salvia May Night",latin:"Salvia x sylvestris",cat:"perennial",zone:"4–8",water:"low",sun:"Full sun",height:"1.5–2 ft",notes:"Deep purple, long bloom, workhorse perennial.",wiki:"Salvia_×_sylvestris"},
+  {id:16,name:"Hummingbird Mint",latin:"Agastache spp.",cat:"perennial",zone:"5–9",water:"low",sun:"Full sun",height:"2–3 ft",notes:"Orange/purple spires, hummingbird magnet. Needs sharp drainage.",wiki:"Agastache",flag:"Spring plant only · Sharp drainage"},
+  {id:17,name:"Penstemon",latin:"Penstemon strictus",cat:"perennial",zone:"4–9",water:"very-low",sun:"Full sun",height:"1–3 ft",notes:"Native, purple spires, hummingbird favorite. Deer resistant.",wiki:"Penstemon_strictus"},
+  {id:18,name:"Chocolate Flower",latin:"Berlandiera lyrata",cat:"perennial",zone:"4–9",water:"low",sun:"Full sun",height:"1 ft",notes:"Cocoa-scented blooms in morning. Very tough.",wiki:"Berlandiera_lyrata"},
+  {id:19,name:"Mexican Hat",latin:"Ratibida columnifera",cat:"perennial",zone:"4–9",water:"very-low",sun:"Full sun",height:"1.5–2.5 ft",notes:"Dramatic drooping petals. Native prairie plant.",wiki:"Ratibida_columnifera"},
+  {id:20,name:"Coreopsis / Tickseed",latin:"Coreopsis spp.",cat:"perennial",zone:"4–9",water:"low",sun:"Full sun",height:"1–2 ft",notes:"Cheerful yellow, very long bloom. Easy and reliable.",wiki:"Coreopsis"},
+  {id:21,name:"Shasta Daisy",latin:"Leucanthemum x superbum",cat:"perennial",zone:"4–9",water:"moderate",sun:"Full sun–part shade",height:"2 ft",notes:"Classic white daisy. Higher water — transition zones only.",wiki:"Leucanthemum_×_superbum",flag:"Higher water"},
+  {id:22,name:"Cat's Pajamas Catmint",latin:"Nepeta hybrid",cat:"perennial",zone:"3–8",water:"low",sun:"Full sun",height:"1–1.5 ft",notes:"Compact catmint form. Non-stop purple bloom.",wiki:"Nepeta"},
+  {id:23,name:"Lamb's Ear",latin:"Stachys byzantina",cat:"perennial",zone:"4–8",water:"low",sun:"Full sun–part shade",height:"1 ft",notes:"Silvery-white fuzzy foliage. Rock mulch and drainage required.",wiki:"Stachys_byzantina",flag:"Sharp drainage"},
+  {id:24,name:"Jupiter's Beard",latin:"Centranthus ruber",cat:"perennial",zone:"5–8",water:"low",sun:"Full sun",height:"2–3 ft",notes:"Deep red or white clustered blooms. Self-seeds freely.",wiki:"Centranthus_ruber"},
+  {id:25,name:"Gayfeather / Blazing Star",latin:"Liatris spp.",cat:"perennial",zone:"3–9",water:"low",sun:"Full sun",height:"2–3 ft",notes:"Tall purple spires, blooms top to bottom. Dramatic.",wiki:"Liatris"},
+  {id:26,name:"Sea Holly",latin:"Eryngium spp.",cat:"perennial",zone:"4–8",water:"very-low",sun:"Full sun",height:"2 ft",notes:"Steel blue thistle-like form. Deep taproot — site permanently.",wiki:"Eryngium",flag:"Site permanently"},
+  {id:27,name:"Hardy Ice Plant",latin:"Delosperma cooperi",cat:"perennial",zone:"5–9",water:"very-low",sun:"Full sun",height:"3–6 in",notes:"Bright purple, carpet-forming groundcover. Needs sharp drainage.",wiki:"Delosperma_cooperi",flag:"Spring plant only · Sharp drainage"},
+  {id:28,name:"Fire Spinner Ice Plant",latin:"Delosperma Fire Spinner",cat:"perennial",zone:"5–9",water:"very-low",sun:"Full sun",height:"2–3 in",notes:"Vibrant multi-color blooms. Plant Select winner.",wiki:"Delosperma",flag:"Spring plant only · Sharp drainage"},
+
+  // SHRUBS
+  {id:29,name:"Apache Plume",latin:"Fallugia paradoxa",cat:"shrub",zone:"4–9",water:"very-low",sun:"Full sun",height:"4–6 ft",notes:"Colorado native. Four-season interest — white blooms + feathery seed plumes.",wiki:"Fallugia_paradoxa"},
+  {id:30,name:"Blue Mist Spirea",latin:"Caryopteris x clandonensis",cat:"shrub",zone:"5–9",water:"low",sun:"Full sun",height:"2–3 ft",notes:"Late-season lavender-blue bloom. Cut to 6–12\" early spring.",wiki:"Caryopteris_×_clandonensis",flag:"Spring plant only"},
+  {id:31,name:"Rabbitbrush",latin:"Ericameria nauseosa",cat:"shrub",zone:"4–9",water:"very-low",sun:"Full sun",height:"3–5 ft",notes:"Native. Gold fall bloom, silvery summer foliage. Very tough.",wiki:"Ericameria_nauseosa"},
+  {id:32,name:"Three-Leaf Sumac",latin:"Rhus trilobata",cat:"shrub",zone:"4–8",water:"very-low",sun:"Full sun–part shade",height:"3–5 ft",notes:"Native shrub with brilliant orange-red fall color.",wiki:"Rhus_trilobata"},
+  {id:33,name:"Mountain Mahogany",latin:"Cercocarpus montanus",cat:"shrub",zone:"4–8",water:"very-low",sun:"Full sun",height:"5–8 ft",notes:"Native. Feathery seed tails. Excellent structural shrub.",wiki:"Cercocarpus_montanus"},
+  {id:34,name:"Pawnee Buttes Sand Cherry",latin:"Prunus besseyi",cat:"shrub",zone:"3–8",water:"low",sun:"Full sun",height:"1.5 ft × 6 ft",notes:"Plant Select winner. Wide spreading form, white spring blooms.",wiki:"Prunus_besseyi"},
+  {id:35,name:"Fernbush",latin:"Chamaebatiaria millefolium",cat:"shrub",zone:"4–8",water:"very-low",sun:"Full sun",height:"4–6 ft",notes:"Ferny aromatic foliage, white summer blooms. Excellent rock garden shrub.",wiki:"Chamaebatiaria_millefolium"},
+  {id:36,name:"Boulder Raspberry",latin:"Rubus deliciosus",cat:"shrub",zone:"4–8",water:"low",sun:"Full sun–part shade",height:"3–5 ft",notes:"Large white blooms. Colorado native, arching form.",wiki:"Rubus_deliciosus"},
+  {id:37,name:"Leadplant",latin:"Amorpha canescens",cat:"shrub",zone:"2–9",water:"very-low",sun:"Full sun",height:"2–3 ft",notes:"Native, purple bloom, nitrogen-fixing. Deep taproot.",wiki:"Amorpha_canescens"},
+  {id:38,name:"Potentilla",latin:"Dasiphora fruticosa",cat:"shrub",zone:"2–7",water:"low",sun:"Full sun–part shade",height:"2–3 ft",notes:"Long bloom season, yellow or white flowers. Very adaptable.",wiki:"Dasiphora_fruticosa"},
+  {id:39,name:"Manhattan Euonymus",latin:"Euonymus kiautschovicus",cat:"shrub",zone:"5–8",water:"moderate",sun:"Full sun–part shade",height:"4–6 ft",notes:"Semi-evergreen. Excellent screening shrub. Higher water.",wiki:"Euonymus_kiautschovicus",flag:"Higher water"},
+  {id:40,name:"Lavender",latin:"Lavandula angustifolia",cat:"shrub",zone:"5–9",water:"low",sun:"Full sun",height:"1.5–2 ft",notes:"Fragrant purple bloom. Munstead or Hidcote varieties for Denver.",wiki:"Lavandula_angustifolia",flag:"Spring plant only · Sharp drainage"},
+
+  // TREES
+  {id:41,name:"Serviceberry",latin:"Amelanchier alnifolia",cat:"tree",zone:"3–8",water:"low",sun:"Full sun–part shade",height:"10–20 ft",notes:"White spring bloom, edible berries, orange fall color. Native.",wiki:"Amelanchier_alnifolia"},
+  {id:42,name:"Gambel Oak",latin:"Quercus gambelii",cat:"tree",zone:"4–8",water:"very-low",sun:"Full sun",height:"10–20 ft",notes:"Colorado's native oak. Excellent wildlife habitat, rich fall color.",wiki:"Quercus_gambelii"},
+  {id:43,name:"Pinyon Pine",latin:"Pinus edulis",cat:"tree",zone:"4–8",water:"very-low",sun:"Full sun",height:"10–20 ft",notes:"Native pine. Produces edible pine nuts. Do not overwater.",wiki:"Pinus_edulis",flag:"Do not overwater"},
+  {id:44,name:"Rocky Mountain Juniper",latin:"Juniperus scopulorum",cat:"tree",zone:"3–7",water:"very-low",sun:"Full sun",height:"10–20 ft",notes:"Native evergreen. Excellent screen or specimen. Very tough.",wiki:"Juniperus_scopulorum"},
+  {id:45,name:"Hot Wings Maple",latin:"Acer tataricum",cat:"tree",zone:"3–8",water:"low",sun:"Full sun–part shade",height:"15–20 ft",notes:"Brilliant red samaras in summer. Outstanding small tree.",wiki:"Acer_tataricum"},
+  {id:46,name:"Bristlecone Pine",latin:"Pinus aristata",cat:"tree",zone:"4–7",water:"very-low",sun:"Full sun",height:"10–15 ft",notes:"Colorado's iconic alpine pine. Extraordinarily long-lived. Slow growing.",wiki:"Pinus_aristata",flag:"Do not overwater"},
+
+  // GROUNDCOVERS
+  {id:47,name:"Sedum Autumn Joy",latin:"Hylotelephium Herbstfreude",cat:"ground",zone:"3–9",water:"very-low",sun:"Full sun",height:"1.5–2 ft",notes:"Pink to rust flower heads. Outstanding four-season interest.",wiki:"Hylotelephium_telephium"},
+  {id:48,name:"Creeping Sedum",latin:"Sedum spp.",cat:"ground",zone:"3–9",water:"very-low",sun:"Full sun–part shade",height:"2–6 in",notes:"Mat-forming succulent. Many varieties. Needs good drainage.",wiki:"Sedum",flag:"Sharp drainage"},
+  {id:49,name:"Hens and Chicks",latin:"Sempervivum tectorum",cat:"ground",zone:"3–8",water:"very-low",sun:"Full sun–part shade",height:"3–6 in",notes:"Architectural rosettes in many colors. Propagates by offsets.",wiki:"Sempervivum_tectorum"},
+  {id:50,name:"Pussytoes",latin:"Antennaria spp.",cat:"ground",zone:"3–8",water:"very-low",sun:"Full sun–part shade",height:"2–4 in",notes:"Colorado native groundcover. Silver-gray foliage. Perfect under trees.",wiki:"Antennaria"},
+];
+
+const waterDrops = (level) => {
+  const levels = {'very-low':1,'low':2,'moderate':3};
+  const count = levels[level] || 1;
+  const max = 3;
+  let html = '<div class="water-drops">';
+  for(let i=0;i<max;i++){
+    html += `<div class="drop${i<count?' filled':''}"></div>`;
+  }
+  html += '</div>';
+  return html;
+};
+
+const waterLabel = (level) => ({
+  'very-low':'Very Low Water','low':'Low Water','moderate':'Moderate Water'
+}[level]||level);
+
+const catLabel = (cat) => ({
+  grass:'Grass',perennial:'Perennial',shrub:'Shrub',tree:'Tree',ground:'Groundcover'
+}[cat]||cat);
+
+const catEmoji = (cat) => ({
+  grass:'🌾',perennial:'🌸',shrub:'🌿',tree:'🌲',ground:'🪨'
+}[cat]||'🌱');
+
+let activeFilter = 'all';
+let searchTerm = '';
+const imgCache = {};
+
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  const filtered = PLANTS.filter(p => {
+    const matchCat = activeFilter === 'all' || p.cat === activeFilter;
+    const q = searchTerm.toLowerCase();
+    const matchSearch = !q || p.name.toLowerCase().includes(q) || p.latin.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+
+  if(filtered.length === 0){
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
+      <div class="empty-icon">🌱</div>
+      <div class="empty-title">No plants found</div>
+      <div class="empty-text">Try a different search or category</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="card" id="card-${p.id}">
+      ${imgCache[p.id]
+        ? `<img class="card-photo" src="${imgCache[p.id]}" alt="${p.name}" loading="lazy" onerror="this.parentElement.querySelector('.card-photo-placeholder').style.display='flex';this.style.display='none'">`
+        : `<div class="card-photo-placeholder" id="ph-${p.id}">${catEmoji(p.cat)}</div>`
+      }
+      <div class="card-body">
+        <div class="card-cat" data-cat="${p.cat}">${catLabel(p.cat)}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="card-latin">${p.latin}</div>
+        <div class="card-facts">
+          <div class="fact"><span class="fact-icon">📏</span><span class="fact-val">${p.height}</span></div>
+          <div class="fact"><span class="fact-icon">☀️</span><span class="fact-val">${p.sun}</span></div>
+          <div class="fact">
+            <span class="fact-icon">💧</span>
+            <span class="fact-val" style="display:flex;align-items:center;gap:6px">
+              ${waterDrops(p.water)}<span>${waterLabel(p.water)}</span>
+            </span>
+          </div>
+          <div class="fact"><span class="fact-icon">🗺</span><span class="fact-val">Zone ${p.zone}</span></div>
+        </div>
+        ${p.notes ? `<div class="card-note">${p.notes}</div>` : ''}
+        ${p.flag ? `<div class="card-flag">⚠ ${p.flag}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+
+  // Fetch images for visible plants
+  filtered.forEach(p => {
+    if(!imgCache[p.id]){
+      fetchWikiImage(p);
+    }
+  });
+}
+
+async function fetchWikiImage(plant){
+  try {
+    const res = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(plant.wiki)}`,
+      {headers:{'Accept':'application/json'}}
+    );
+    if(!res.ok) return;
+    const data = await res.json();
+    const src = data.thumbnail?.source || data.originalimage?.source;
+    if(src){
+      imgCache[plant.id] = src;
+      const ph = document.getElementById(`ph-${plant.id}`);
+      if(ph){
+        const img = document.createElement('img');
+        img.className = 'card-photo';
+        img.src = src;
+        img.alt = plant.name;
+        img.loading = 'lazy';
+        img.onerror = () => { img.style.display='none'; ph.style.display='flex'; };
+        ph.replaceWith(img);
+      }
+    }
+  } catch(e){}
+}
+
+function setFilter(cat, btn){
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function filterPlants(){
+  searchTerm = document.getElementById('searchInput').value;
+  renderGrid();
+}
+
+// Initial render
+renderGrid();
+</script>
+</body>
+</html>
