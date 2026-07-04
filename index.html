@@ -196,7 +196,7 @@
   .quote-line{font-family:'Cormorant Garamond',serif;font-size:21px;
     font-style:italic;color:var(--sage-soft);line-height:1.5;
     margin:0 0 34px 74px;max-width:620px}
-  .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .plans{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .plan{background:var(--cream);padding:24px 20px;position:relative;
     display:flex;flex-direction:column}
   .plan.featured{background:var(--mint);outline:2px solid var(--sage)}
@@ -230,6 +230,22 @@
   .onetime-item .ot-name{font-size:12px;color:var(--mint);font-weight:400}
   .onetime-item .ot-price{font-family:'Cormorant Garamond',serif;
     font-size:15px;font-weight:700;color:var(--gold);white-space:nowrap}
+  .onetime-note{font-size:11.5px;color:var(--sage-soft);margin-top:14px;
+    font-style:italic;line-height:1.6}
+  .bundle-banner{margin:28px 0 0;background:var(--forest);
+    border:2px solid var(--sage);padding:28px 36px}
+  .bundle-inner{max-width:680px}
+  .bundle-tag{font-family:'Cormorant Garamond',serif;font-size:26px;
+    font-weight:700;color:var(--mint);margin-bottom:4px}
+  .bundle-tagline{font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--sage-soft);font-weight:700;margin-bottom:12px}
+  .bundle-copy{font-size:13.5px;color:var(--cream);line-height:1.7;
+    margin-bottom:16px;font-weight:300}
+  .bundle-price{font-family:'Cormorant Garamond',serif;font-size:36px;
+    font-weight:700;color:var(--gold);line-height:1}
+  .bundle-per{font-size:15px;color:var(--muted);font-weight:500}
+  .bundle-save{font-size:11px;color:var(--sage);font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
 
   /* ---------- WHY US ---------- */
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
@@ -545,71 +561,53 @@
         <h2>Year-Round Care</h2>
       </div>
     </div>
-    <p class="sec-desc reveal">Your yard stays sharp year-round without you
-      lifting a finger. Every install client receives a plan offer before we
-      leave — but you can sign up independently. No install required.</p>
+    <p class="sec-desc reveal">Two simple plans and a menu of seasonal services. Every install client gets a care offer before we leave — but anyone can sign up. No install required.</p>
     <div class="sec-rule"></div>
     <p class="quote-line reveal">"We don't just build it and leave. We take care
       of what we create — so your investment looks as good in year five as it
       did on install day."</p>
 
     <div class="plans">
-      <div class="plan entry reveal">
-        <div class="plan-badge gold">Start Here</div>
+      <div class="plan featured reveal">
+        <div class="plan-badge">Most Popular</div>
         <div class="plan-name">Weekly Mowing</div>
-        <div class="plan-price">from $140<span> /mo</span></div>
-        <div class="plan-mo">April through October</div>
+        <div class="plan-price">$200<span> /mo</span></div>
+        <div class="plan-mo">April 1 – October 31</div>
         <div class="plan-for">Best for: anyone who just wants a sharp lawn</div>
         <ul class="plan-feat">
           <li>Weekly mow on a set day</li>
           <li>Edging along walks and beds</li>
+          <li>Line trimming around fences and obstacles</li>
           <li>Blowing and full cleanup each visit</li>
           <li>Same crew, every week — no no-shows</li>
+          <li>Dormant weeks skipped, never billed</li>
           <li>Simple monthly billing, cancel anytime</li>
-        </ul>
-      </div>
-
-      <div class="plan reveal">
-        <div class="plan-name">Essential</div>
-        <div class="plan-price">$600<span> /yr</span></div>
-        <div class="plan-mo">or $55 / month</div>
-        <div class="plan-for">Best for: mulch beds + xeriscape · no turf</div>
-        <ul class="plan-feat">
-          <li>Spring cleanup: debris, edging, pruning</li>
-          <li>Fall cleanup: cutback, leaf removal, refresh</li>
-          <li>Irrigation startup each spring</li>
-          <li>Irrigation blowout before winter</li>
-          <li>Xeriscape + bed pruning once per year</li>
-        </ul>
-      </div>
-
-      <div class="plan featured reveal">
-        <div class="plan-badge">Most Popular</div>
-        <div class="plan-name">Complete</div>
-        <div class="plan-price">$1,800<span> /yr</span></div>
-        <div class="plan-mo">or $150 / month</div>
-        <div class="plan-for">Best for: full-service, turf + beds, hands-off</div>
-        <ul class="plan-feat">
-          <li>Weekly mowing April through October</li>
-          <li>Everything in Essential included</li>
-          <li>Edging, blowing, cleanup each visit</li>
-          <li>2 yards mulch refresh annually</li>
-          <li>Aeration and overseeding each fall</li>
         </ul>
       </div>
 
       <div class="plan reveal">
         <div class="plan-name">Snow Removal</div>
         <div class="plan-price">$600<span> /season</span></div>
-        <div class="plan-mo">Add-on to any plan</div>
+        <div class="plan-mo">November 1 – April 15</div>
         <div class="plan-for">Best for: homeowners + rental properties</div>
         <ul class="plan-feat">
-          <li>Seasonal flat-rate: one invoice, full winter</li>
-          <li>Pre-storm salt on all hard surfaces</li>
-          <li>Post-storm clearing: walks, drives, steps</li>
+          <li>Every storm over 2″, all season long</li>
+          <li>Cleared within 12 hours of snowfall end</li>
+          <li>Driveway, walks, and steps</li>
+          <li>Walks and steps salted after clearing</li>
           <li>Priority scheduling for rentals</li>
-          <li>Add to any plan or book standalone</li>
+          <li>Photo sent when you're clear</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="bundle-banner reveal">
+      <div class="bundle-inner">
+        <div class="bundle-tag">Year-Round Care</div>
+        <div class="bundle-tagline">Bundle both · billed monthly, all year</div>
+        <p class="bundle-copy">Weekly mowing all season and every snowstorm all winter — one flat payment, twelve months, never think about your yard again.</p>
+        <div class="bundle-price">$160 <span class="bundle-per">/month</span></div>
+        <div class="bundle-save">save $80 a year</div>
       </div>
     </div>
 
@@ -623,6 +621,7 @@
         <div class="onetime-item"><span class="ot-name">Irrigation Blowout</span><span class="ot-price">$85–120</span></div>
         <div class="onetime-item"><span class="ot-name">Mulch Refresh</span><span class="ot-price">$200–280</span></div>
       </div>
+      <p class="onetime-note">Anvil install clients: we'll text you each spring and fall to book your visits — your landscape never falls off the calendar.</p>
     </div>
   </div>
 </section>
@@ -712,13 +711,13 @@
       <div class="field">
         <label for="service">What can we help with?</label>
         <select id="service" name="service">
-          <option>Weekly Lawn Mowing</option>
+          <option>Weekly Mowing</option>
+          <option>Snow Removal</option>
+          <option>Year-Round Care</option>
           <option>Mulch Bed + Flower Planting</option>
           <option>Full Xeriscape Transformation</option>
           <option>Hardscaping (fire pit, patio, wall, path)</option>
           <option>Landscape Lighting</option>
-          <option>Year-Round Maintenance Plan</option>
-          <option>Snow Removal</option>
           <option>Not sure yet — help me decide</option>
         </select>
       </div>
