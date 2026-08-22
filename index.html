@@ -67,6 +67,7 @@
     flex-direction:column;gap:5px;padding:4px}
   .nav-toggle span{width:24px;height:2px;background:var(--mint);display:block}
   .nav-phone{display:none}
+  .nav-drawer-divider,.nav-contact{display:none}
 
   /* ---------- HERO ---------- */
   .hero{background:var(--forest);position:relative;overflow:hidden;
@@ -328,6 +329,12 @@
     .nav-links{display:none}
     .nav-toggle{display:flex}
     .nav-phone{display:inline-block}
+    .nav-links.open .nav-phone-desktop{display:none}
+    .nav-drawer-divider{display:block;height:1px;
+      background:rgba(158,207,176,.2);margin:4px 0}
+    .nav-contact{display:block;font-size:13px;
+      color:rgba(214,237,224,.5);letter-spacing:.03em}
+    .nav-contact:hover{color:var(--white)}
     .nav-links.open{display:flex;position:absolute;top:71px;left:0;right:0;
       flex-direction:column;background:var(--forest);padding:20px 32px;gap:18px;
       border-bottom:1px solid rgba(158,207,176,.15)}
@@ -366,8 +373,10 @@
       <a href="#build">Build</a>
       <a href="#maintain">Maintain</a>
       <a href="#why">Why Us</a>
-      <a class="nav-cta" href="tel:+17207721844">720-772-1844</a>
+      <a class="nav-cta nav-phone-desktop" href="tel:+17207721844">720-772-1844</a>
       <a class="nav-cta" href="#contact">Free Quote</a>
+      <span class="nav-drawer-divider"></span>
+      <a class="nav-contact" href="mailto:hello@anvillandscape.com">hello@anvillandscape.com</a>
     </div>
   </div>
 </nav>
