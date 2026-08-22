@@ -66,6 +66,7 @@
   .nav-toggle{display:none;background:none;border:0;cursor:pointer;
     flex-direction:column;gap:5px;padding:4px}
   .nav-toggle span{width:24px;height:2px;background:var(--mint);display:block}
+  .nav-phone{display:none}
 
   /* ---------- HERO ---------- */
   .hero{background:var(--forest);position:relative;overflow:hidden;
@@ -287,6 +288,8 @@
     margin-top:6px;font-family:'DM Sans',sans-serif}
   .form-note{font-size:11px;color:var(--muted);text-align:center;
     margin-top:12px}
+  .form-note a{display:inline-block;color:var(--pine);font-weight:700;
+    font-size:14px;padding:10px 0;border-bottom:1px solid var(--pine)}
 
   /* ---------- FOOTER ---------- */
   .footer{background:var(--forest);padding:44px 0 30px}
@@ -322,6 +325,7 @@
     .sec-desc,.sec-rule,.quote-line,.onetime{margin-left:0}
     .nav-links{display:none}
     .nav-toggle{display:flex}
+    .nav-phone{display:inline-block}
     .nav-links.open{display:flex;position:absolute;top:71px;left:0;right:0;
       flex-direction:column;background:var(--forest);padding:20px 32px;gap:18px;
       border-bottom:1px solid rgba(158,207,176,.15)}
@@ -354,11 +358,13 @@
     <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
+    <a class="nav-cta nav-phone" href="tel:+17207721844">720-772-1844</a>
     <div class="nav-links" id="navlinks">
       <a href="#transform">Transform</a>
       <a href="#build">Build</a>
       <a href="#maintain">Maintain</a>
       <a href="#why">Why Us</a>
+      <a class="nav-cta" href="tel:+17207721844">720-772-1844</a>
       <a class="nav-cta" href="#contact">Free Quote</a>
     </div>
   </div>
@@ -744,7 +750,7 @@
         <textarea id="msg" name="message" placeholder="Front yard, back yard, size, what you're hoping for..."></textarea>
       </div>
       <button class="btn-gold" type="submit">Request Free Quote</button>
-      <div class="form-note">Or call / text us directly — we respond same-day.</div>
+      <div class="form-note">Or call / text directly:<br><a href="tel:+17207721844">720-772-1844</a></div>
     </form>
   </div>
 </section>
