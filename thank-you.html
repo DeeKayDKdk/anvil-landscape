@@ -185,8 +185,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4>Get in Touch</h4>
         <a href="/#contact">Request a Free Quote</a>
         <p>anvillandscape.com</p>
-        <p>720-772-1844</p>
-        <p>hello@anvillandscape.com</p>
+        <p><a href="tel:+17207721844">720-772-1844</a></p>
+        <p><a href="mailto:hello@anvillandscape.com">hello@anvillandscape.com</a></p>
       </div>
     </div>
     <div class="footer-base">
@@ -200,6 +200,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.querySelectorAll('#navlinks a').forEach(a=>{
     a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'));
   });
+
+  /* Google Ads conversion tag is configured in GTM (GTM-KMDCFHB5) against
+     this event — do not add a gtag snippet here, it would double-count. */
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'quote_form_submitted' });
 </script>
 </body>
 </html>

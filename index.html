@@ -106,6 +106,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:12.5px;color:rgba(245,241,232,.55);letter-spacing:.04em}
   .hero-meta span{display:flex;align-items:center;gap:7px}
   .hero-meta b{color:var(--sage-soft);font-weight:600}
+  .hero-alt{margin-top:18px;font-size:13px}
+  .hero-alt a{color:var(--sage-soft);text-decoration:underline;
+    text-underline-offset:3px;transition:color .2s}
+  .hero-alt a:hover{color:var(--mint)}
 
   /* ---------- SERVICE-AREA STRIP ---------- */
   .areas{background:var(--pine);padding:14px 0}
@@ -114,6 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .areas-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--sage-soft);font-weight:600}
   .areas-list{font-size:12.5px;color:var(--mint);letter-spacing:.05em}
+  .areas-secondary{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
 
   /* ---------- SECTION SHELL ---------- */
   section{padding:78px 0}
@@ -322,7 +327,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 
+  /* ---------- STICKY CALL BAR ---------- */
+  .sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;
+    background:var(--forest);border-top:1px solid rgba(197,216,201,.2);
+    padding-bottom:env(safe-area-inset-bottom)}
+  .sticky-bar-inner{display:flex}
+  .sticky-bar a{flex:1;text-align:center;padding:14px 8px;font-size:14px;
+    font-weight:600;letter-spacing:.03em;text-decoration:none}
+  .sticky-bar .bar-call{color:var(--gold)}
+  .sticky-bar .bar-quote{background:var(--gold);color:var(--forest)}
+  .sticky-bar .bar-call:hover{background:rgba(245,241,232,.07)}
+  .sticky-bar .bar-quote:hover{background:#cf9434}
+  @media(prefers-reduced-motion:reduce){.sticky-bar{transition:none}}
+
   /* ---------- RESPONSIVE ---------- */
+  @media(max-width:768px){
+    .sticky-bar{display:block}
+    .sticky-bar.is-hidden{display:none}
+    .footer{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+  }
+  @media(max-width:600px){
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .hero-actions .btn-gold,.hero-actions .btn-ghost{
+      text-align:center;padding:16px 24px}
+    .areas .wrap{flex-direction:column;gap:5px}
+  }
   @media(max-width:860px){
     .hero h1{font-size:42px}
     .install-card{grid-template-columns:1fr}
@@ -397,15 +426,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap hero-inner">
     <div class="hero-eyebrow">Transform · Build · Maintain</div>
     <h1>The Denver yard you keep <em>meaning</em> to deal with.</h1>
-    <p class="hero-lead">We design and install Denver landscapes — from a simple
-      flower bed to a complete xeriscape to a custom outdoor living space.
-      Whatever your yard needs, we handle it start to finish. One call. One
-      company. No coordinating multiple contractors.</p>
+    <p class="hero-lead">I design and install Denver landscapes, from a single
+      flower bed to a full xeriscape or patio. One call, start to finish.</p>
     <div class="hero-actions">
       <a class="btn-gold" href="#contact">Get Your Free Quote</a>
-      <a class="btn-ghost" href="#transform">See What We Do</a>
-      <a class="btn-ghost" href="#maintain">Mowing &amp; Lawn Care</a>
+      <a class="btn-ghost" href="tel:+17207721844">Call 720-772-1844</a>
     </div>
+    <p class="hero-alt"><a href="#maintain">Just need mowing? &rarr;</a></p>
     <div class="hero-meta">
       <span><b>✓</b> Same-day response</span>
       <span><b>✓</b> Written proposals always</span>
@@ -418,7 +445,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="areas">
   <div class="wrap">
     <span class="areas-label">Serving</span>
-    <span class="areas-list">Wash Park · Highlands · Platt Park · Park Hill · Capitol Hill · RiNo</span>
+    <span class="areas-list">Mowing &amp; year-round care: Wash Park · Platt Park · Baker</span>
+    <span class="areas-list areas-secondary">Design &amp; install: Denver metro</span>
   </div>
 </div>
 
@@ -732,6 +760,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       visit within the week. Tell us about your property and we'll take it
       from there.</p>
 
+    <p class="form-note" style="margin-bottom:12px">Or text a photo of your yard to <a href="tel:+17207721844">720-772-1844</a> and I'll send a number back.</p>
     <form class="form" action="https://formspree.io/f/xpqnewwk" method="post">
       <input type="hidden" name="_subject" value="New quote request — anvillandscape.com"/>
       <input type="hidden" name="_next" value="https://anvillandscape.com/thank-you.html"/>
@@ -747,17 +776,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="form-row">
         <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required/>
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email"/>
         </div>
         <div class="field">
-          <label for="address">Property Address</label>
-          <input id="address" name="address" type="text"/>
+          <label for="address">Property Address or Cross Streets</label>
+          <input id="address" name="address" type="text" required/>
         </div>
       </div>
       <div class="field">
         <label for="service">What can we help with?</label>
         <select id="service" name="service">
+          <option value="" selected disabled>Choose one</option>
           <option>Weekly Mowing</option>
           <option>Snow Removal</option>
           <option>Year-Round Care</option>
@@ -772,7 +802,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="msg">Tell us about your property</label>
         <textarea id="msg" name="message" placeholder="Front yard, back yard, size, what you're hoping for..."></textarea>
       </div>
-      <button class="btn-gold" type="submit">Request Free Quote</button>
+      <button class="btn-gold" type="submit">Get My Quote</button>
+      <p class="form-note" style="margin-top:8px;margin-bottom:0">I answer every message the same day.</p>
       <div class="form-note">Or call / text directly:<br><a href="tel:+17207721844">720-772-1844</a><br>Prefer email? <a class="secondary" href="mailto:hello@anvillandscape.com">hello@anvillandscape.com</a></div>
     </form>
   </div>
@@ -798,16 +829,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="footer-col">
         <h4>Service Area</h4>
-        <p>Wash Park · Highlands</p>
-        <p>Platt Park · Park Hill</p>
-        <p>Capitol Hill · RiNo</p>
+        <p>Mowing &amp; year-round care:</p>
+        <p>Wash Park · Platt Park · Baker</p>
+        <p>Design &amp; install: Denver metro</p>
       </div>
       <div class="footer-col">
         <h4>Get in Touch</h4>
         <a href="#contact">Request a Free Quote</a>
         <p>anvillandscape.com</p>
-        <p>720-772-1844</p>
-        <p>[ hello@anvillandscape.com ]</p>
+        <p><a href="tel:+17207721844">720-772-1844</a></p>
+        <p>[ <a href="mailto:hello@anvillandscape.com">hello@anvillandscape.com</a> ]</p>
       </div>
     </div>
     <div class="footer-base">
@@ -816,6 +847,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </footer>
+
+<!-- ============ STICKY CALL BAR (mobile) ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-inner">
+    <a class="bar-call" href="tel:+17207721844">Call 720-772-1844</a>
+    <a class="bar-quote" href="#contact">Get a Quote</a>
+  </div>
+</div>
 
 <script>
   /* scroll reveal */
@@ -831,6 +870,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 
   /* service preselect — any [data-service] link sets the dropdown on click */
+  /* matches on option text (not index), so the new "Choose one" placeholder does not affect it */
   document.querySelectorAll('a[data-service]').forEach(function(a){
     a.addEventListener('click',function(){
       var svc=this.dataset.service;
@@ -841,6 +881,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     });
   });
+
+  /* sticky call bar — hide while #contact is in viewport */
+  (function(){
+    var bar=document.getElementById('stickyBar');
+    var contact=document.getElementById('contact');
+    if(!bar||!contact)return;
+    new IntersectionObserver(function(entries){
+      bar.classList.toggle('is-hidden',entries[0].isIntersecting);
+    },{threshold:0}).observe(contact);
+  })();
 </script>
 </body>
 </html>
