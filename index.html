@@ -89,10 +89,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hero-eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;
     color:var(--sage-soft);margin-bottom:22px;font-weight:600}
   .hero h1{font-size:60px;font-weight:700;color:var(--cream);
-    line-height:1.04;letter-spacing:-.01em;margin-bottom:24px}
+    line-height:1.04;letter-spacing:-.01em;margin-bottom:34px}
   .hero h1 em{font-style:italic;color:var(--sage-soft)}
-  .hero-lead{font-size:17px;color:rgba(245,241,232,.78);
-    font-weight:300;line-height:1.75;margin-bottom:34px;max-width:560px}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn-gold{background:var(--gold);color:var(--forest);padding:15px 30px;
     font-weight:600;font-size:14px;letter-spacing:.03em;
@@ -426,8 +424,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap hero-inner">
     <div class="hero-eyebrow">Transform · Build · Maintain</div>
     <h1>The Denver yard you keep <em>meaning</em> to deal with.</h1>
-    <p class="hero-lead">I design and install Denver landscapes, from a single
-      flower bed to a full xeriscape or patio. One call, start to finish.</p>
     <div class="hero-actions">
       <a class="btn-gold" href="#contact">Get Your Free Quote</a>
       <a class="btn-ghost" href="tel:+17207721844">Call 720-772-1844</a>
@@ -882,14 +878,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 
-  /* sticky call bar — hide while #contact is in viewport */
+  /* sticky call bar — hide while #top (hero) or #contact is in viewport */
   (function(){
     var bar=document.getElementById('stickyBar');
+    var top=document.getElementById('top');
     var contact=document.getElementById('contact');
-    if(!bar||!contact)return;
-    new IntersectionObserver(function(entries){
-      bar.classList.toggle('is-hidden',entries[0].isIntersecting);
-    },{threshold:0}).observe(contact);
+    if(!bar||!top||!contact)return;
+    var state={top:true,contact:false};
+    function update(){bar.classList.toggle('is-hidden',state.top||state.contact);}
+    new IntersectionObserver(function(e){state.top=e[0].isIntersecting;update();},{threshold:0}).observe(top);
+    new IntersectionObserver(function(e){state.contact=e[0].isIntersecting;update();},{threshold:0}).observe(contact);
   })();
 </script>
 </body>
